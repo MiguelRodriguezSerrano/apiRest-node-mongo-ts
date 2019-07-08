@@ -10,6 +10,7 @@ const compression_1 = __importDefault(require("compression"));
 const cors_1 = __importDefault(require("cors"));
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const blogsRoutes_1 = __importDefault(require("./routes/blogsRoutes"));
+const usersRoutes_1 = __importDefault(require("./routes/usersRoutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -35,6 +36,7 @@ class Server {
     routes() {
         this.app.use(indexRoutes_1.default);
         this.app.use('/api/blogs', blogsRoutes_1.default);
+        this.app.use('/api/users', usersRoutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

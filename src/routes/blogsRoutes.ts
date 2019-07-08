@@ -8,12 +8,12 @@ class BlogRoutes {
         this.router = Router();
         this.routes();
     }
-    async getBlogs( req: Request, res: Response)   {
+    public async getBlogs( req: Request, res: Response): Promise <void>  {
        const blogs =  await Blog.find();
        res.json(blogs);
     }
 
-    async getBlog(req: Request, res: Response) {
+    public async getBlog(req: Request, res: Response): Promise <void> {
         const blog = await Blog.findOne({url: req.params.url})
         console.log(req.params.url);
         res.json(blog);
@@ -22,7 +22,7 @@ class BlogRoutes {
 
     }
 
-    async createBlog(req: Request, res: Response) {
+    public async createBlog(req: Request, res: Response): Promise <void> {
         //console.log(req.body);
         const {title, url, content, image} = req.body;
         const newBlog = new Blog({title, url, content, image});
@@ -32,14 +32,14 @@ class BlogRoutes {
 
 
     }
-    async updateBlog(req: Request, res: Response) {
+    public async updateBlog(req: Request, res: Response): Promise <void> {
         const { url } = req.params;
         const newBlog = await Blog.findOneAndUpdate({url}, req.body, {new: true});
         res.json(newBlog);
 
     }
 
-    async deleteBlog(req: Request, res: Response) {
+    public async deleteBlog(req: Request, res: Response): Promise <void> {
         const { url } = req.params;
         await Blog.findOneAndDelete({url});
         res.json({response: 'Post Delete successfully'});

@@ -13,8 +13,7 @@ class IndexRoutes {
         
         
     }
-
-    
+ 
 }
 
 const indexRoutes = new IndexRoutes();

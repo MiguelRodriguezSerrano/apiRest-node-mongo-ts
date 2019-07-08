@@ -1,12 +1,10 @@
 import express from 'express';
 import morgan from 'morgan';
 import mongoose from 'mongoose';
-import compression from 'compression';
-import cors from 'cors';
-
 
 import indexRoutes from './routes/indexRoutes';
 import blogRoutes from './routes/blogsRoutes';
+import userRoutes from './routes/usersRoutes';
 
 class Server {
    public app: express.Application;
@@ -29,8 +27,6 @@ class Server {
         this.app.use(morgan('dev'));
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));
-        this.app.use(compression());
-        this.app.use(cors())
         this.app.set('port', process.env.PORT || 3000);
     }
 
@@ -38,15 +34,16 @@ class Server {
        
         this.app.use(indexRoutes);
         this.app.use('/api/blogs', blogRoutes);
+        this.app.use('/api/users', userRoutes);
 
     }
 
     start() {
         this.app.listen(this.app.get('port'), () => {
             console.log('Server on port', this.app.get('port'));
-        })
+        });
     }
-}
+};
 
 
 const server = new Server();
