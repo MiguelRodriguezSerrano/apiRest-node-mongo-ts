@@ -8,6 +8,7 @@ class UserRoutes {
         this.router = Router();
         this.routes();
     }
+    
     public async getUsers( req: Request, res: Response): Promise <void>  {
        const users =  await User.find();
        res.json(users);
@@ -19,6 +20,7 @@ class UserRoutes {
         res.json(user);
 
     }
+
 
     public async createUser(req: Request, res: Response): Promise <void> {
   

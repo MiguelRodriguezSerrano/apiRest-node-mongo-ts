@@ -33,7 +33,6 @@ class UserRoutes {
     }
     createUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //console.log(req.body);
             const newUser = new User_1.default(req.body);
             console.log(newUser);
             yield newUser.save();

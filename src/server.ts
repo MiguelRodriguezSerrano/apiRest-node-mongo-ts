@@ -15,15 +15,17 @@ class Server {
     } 
 
     config() {
+        
         const MONGO_URI = 'mongodb://localhost/restapi';
         mongoose.set('useFindAndModify', true);
-        mongoose.connect(MONGO_URI || process.env.MONGODB_URL, {
+        mongoose.connect(MONGO_URI || process.env.MONGODB_URL, /*Variable de entorno, conecta mongo a puerto por defecto*/ {
             useNewUrlParser: true,
             useCreateIndex: true
         })
             .then(db => console.log('Database is conected'));
 
         //Middlewares
+        
         this.app.use(morgan('dev'));
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended: false}));

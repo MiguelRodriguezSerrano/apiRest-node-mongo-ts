@@ -6,8 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const mongoose_1 = __importDefault(require("mongoose"));
-const compression_1 = __importDefault(require("compression"));
-const cors_1 = __importDefault(require("cors"));
 const indexRoutes_1 = __importDefault(require("./routes/indexRoutes"));
 const blogsRoutes_1 = __importDefault(require("./routes/blogsRoutes"));
 const usersRoutes_1 = __importDefault(require("./routes/usersRoutes"));
@@ -29,8 +27,6 @@ class Server {
         this.app.use(morgan_1.default('dev'));
         this.app.use(express_1.default.json());
         this.app.use(express_1.default.urlencoded({ extended: false }));
-        this.app.use(compression_1.default());
-        this.app.use(cors_1.default());
         this.app.set('port', process.env.PORT || 3000);
     }
     routes() {
@@ -44,5 +40,6 @@ class Server {
         });
     }
 }
+;
 const server = new Server();
 server.start();
